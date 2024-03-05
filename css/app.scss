@@ -1,0 +1,10 @@
+@use "layouts/slide";
+@use "layouts/reviews";
+@use "components/banner";
+@use "../Shared/css/template/base/abstracts/icons";
+
+@include slide.base;
+@include reviews.base;
+@include banner.base;
+
+@include icons.new;

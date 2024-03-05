@@ -1,0 +1,77 @@
+// interfaces
+@use "Shared/css/template/shoppingcart/interfaces/dtm";
+
+// utils
+@use "Shared/css/template/dtm/utils/scope";
+
+// abstracts
+@use "Shared/css/template/base/abstracts/copy";
+
+@mixin base {
+    @include dtm.form;
+
+    @include dtm.facebox;
+    @include dtm.remove-form-headline;
+    @include dtm.remove-fieldset-border;
+
+    @include dtm.review-table;
+}
+
+@mixin page {
+    @include scope.for-template {
+        @include dtm.layout;
+        @include dtm.set-font-size;
+    }
+
+    // @include dtm.set-root-default;
+    @include dtm.process-payment;
+
+    @media all and (max-width: 47.5em) {
+        .dtm--custom .dtm__in--mv .orderItemsTable tbody td:nth-child(1) {
+            padding-left: 10rem;
+        }
+    }
+
+    .c-brand--form__fieldset {
+        margin: 0;
+    }
+
+    @include upsell;
+}
+
+@mixin upsell {
+    .dtm .c-brand .p {
+        font-size: 16px;
+
+        @include copy.separate(1rem) {
+            display: block;
+        }
+    }
+}
+
+@mixin confirmation {
+}
+
+@mixin express-checkout {
+    @include dtm.express-checkout {
+        @include scope.for-template {
+            #{dtm.$select-checkout} {
+                padding: 0.5rem;
+                margin: 0.5rem;
+                flex: 1 1 100%;
+                flex-wrap: wrap;
+
+                [for="otCARD"] {
+                    img {
+                        flex: 0 0 3rem;
+                        max-width: 3rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .paypal__note {
+        flex: 1 1 100%;
+    }
+}

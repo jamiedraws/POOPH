@@ -1,0 +1,62 @@
+:root {
+  --theme-main-font-family: proxima-nova, sans-serif;
+  --theme-main-text-color: #174161;
+  --theme-button-text-color-rollover: white;
+  --theme-footer-background-color: #174161;
+}
+
+.button {
+  font: bold 1.75rem/1 sans-serif;
+  word-break: break-word;
+  padding: 0.75em 1.5em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 0.75em 1.5em;
+  border-radius: 0.3em;
+  text-decoration: none;
+  text-transform: uppercase;
+  font: 900 1.375em/1 proxima-nova, Helvetica, sans-serif;
+}
+.button > span {
+  pointer-events: none;
+}
+.button::before, .button::after, .button > span::before, .button > span::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.button::after, .button:hover > span::after {
+  opacity: 0;
+}
+.button::after, .button > span::after {
+  transition: opacity 200ms ease-out;
+}
+.button:hover::after, .button:focus::after {
+  opacity: 1;
+}
+.button:hover, .button:focus {
+  background: none;
+}
+.button::before {
+  background: #16bdc1;
+}
+.button::after {
+  background: #0d8081;
+}
+
+/*# sourceMappingURL=ordermanager.css.map */

@@ -1,0 +1,61 @@
+$select: ".promo-header" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/background";
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/button";
+
+@mixin base {
+    #{$select} {
+        --color-text: white;
+        --color-background: red;
+        --color-background-rollover: rgb(255, 79, 79);
+
+        order: -1;
+
+        color: var(--color-text);
+        font-size: fonts.rem(20);
+        text-align: center;
+        padding: 0 0.25em;
+
+        &:link,
+        &:visited {
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        @include button.structure {
+            &::before {
+                background: var(--color-background);
+            }
+
+            &::after {
+                background: var(--color-background-rollover);
+            }
+
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        &__group {
+            @include group.contain-flex($gap: 0.5rem) {
+            }
+
+            align-items: center;
+            justify-content: center;
+
+            padding-block: 0.5em;
+        }
+
+        &__picture {
+            max-width: 5em;
+        }
+
+        @content;
+    }
+}

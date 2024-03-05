@@ -1,0 +1,74 @@
+// utils
+@use "Shared/css/template/dtm/utils/scope";
+@use "./../utils/contain";
+@use "./../utils/element-controller";
+@use "./../utils/disclosure";
+
+// components
+@use "./../components/button";
+@use "./../components/list";
+@use "./../components/offer";
+@use "./../components/payment-icons";
+@use "./../components/fp-nav";
+@use "./../components/features-benefits";
+@use "./../components/figure-picture-text";
+@use "./../components/banner";
+@use "./../components/bonus-text-product";
+@use "./../components/accordion";
+@use "./../components/card";
+
+// layouts
+@use "./../layouts/content";
+@use "./../layouts/main-offer";
+@use "./../layouts/slide";
+
+@mixin base {
+    // components
+    @include scope.for-template {
+        @include button.base;
+        @include button.circular;
+    }
+
+    @include list.base;
+
+    @content;
+}
+
+@mixin index {
+    // utils
+    @include contain.base;
+    @include element-controller.base;
+    @include disclosure.base;
+
+    // components
+    @include offer.base;
+    @include payment-icons.base;
+    @include fp-nav.base;
+    @include features-benefits.base;
+    @include figure-picture-text.base;
+    @include banner.base;
+    @include bonus-text-product.base;
+
+    // layouts
+    @include slide.base;
+    @include main-offer.base;
+    @include main-offer.container;
+    @include main-offer.offer-product;
+    @include main-offer.benefits;
+
+    @include content.picture-text;
+    @include content.in-use;
+    @include content.text-video;
+    @include content.communities;
+    @include content.customer-reviews;
+
+    @content;
+}
+
+@mixin faq {
+    // components
+    @include accordion.base;
+    @include card.base;
+
+    @content;
+}

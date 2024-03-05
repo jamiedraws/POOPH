@@ -1,0 +1,9 @@
+$select: ".checkout" !default;
+
+@mixin base {
+    #{$select} {
+        position: relative;
+
+        @content;
+    }
+}

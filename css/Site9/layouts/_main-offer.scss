@@ -1,0 +1,167 @@
+$select: ".main-offer" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/css/template/base/abstracts/group";
+@use "Shared/css/template/base/abstracts/copy";
+@use "Shared/css/template/base/abstracts/background";
+@use "./../abstracts/text";
+
+@mixin base {
+    #{$select} {
+        text-align: center;
+
+        @include background.image-container;
+
+        &__bkg {
+            @include background.image-background;
+        }
+
+        &__in {
+            padding-bottom: 0;
+        }
+
+        &__group {
+            @include group.contain;
+            overflow: visible;
+        }
+
+        &__shipping {
+            display: block;
+
+            font-size: fonts.em(30);
+            @include text.call-out;
+        }
+
+        &__payment {
+            flex-basis: 100%;
+            font-size: 0.5em;
+        }
+
+        &__banner {
+            margin-bottom: 1em;
+
+            font-size: fonts.em(30);
+            max-width: 14em;
+        }
+
+        &__bonus {
+            flex-basis: 100%;
+        }
+
+        &__figure {
+            flex-basis: queries.em(103);
+
+            font-size: fonts.em(15);
+            text-transform: uppercase;
+            line-height: 1.25;
+
+            @include copy.separate;
+        }
+
+        &__product {
+            max-width: queries.em(226);
+        }
+
+        @content;
+    }
+}
+
+@mixin container {
+    #{$select} {
+        &--container {
+            overflow: hidden;
+
+            @media all and (max-width: queries.get(document-mobile-portrait)) {
+                font-size: 2.5vw;
+            }
+
+            @include background.color-map(
+                colors.get(accent-dark),
+                colors.get(base-light)
+            );
+
+            #{$select} {
+                &__offer {
+                    flex-basis: 35em;
+                }
+
+                &__content {
+                    flex-grow: 1;
+                    flex-basis: queries.em(390);
+                    max-width: 40em;
+                }
+
+                @media all and (max-width: queries.set(1040)) {
+                    &__offer {
+                        margin-bottom: 0;
+                    }
+
+                    &__content {
+                        flex-basis: 100%;
+
+                        display: flex;
+                        flex-direction: column-reverse;
+
+                        margin-top: 0;
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin offer-product {
+    #{$select} {
+        &--offer-product {
+            #{$select} {
+                &__group {
+                    align-items: flex-end;
+                }
+
+                &__offer {
+                    flex-basis: 20em;
+                }
+
+                &__product {
+                    margin-left: -1em;
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin benefits {
+    #{$select} {
+        &--benefits {
+            @media all and (max-width: queries.get(document-mobile-portrait)) {
+                font-size: 1.3em;
+            }
+
+            #{$select} {
+                &__group {
+                    $gap: 0.75rem;
+
+                    justify-content: center;
+
+                    @include group.gutter(#{$gap});
+                    margin: #{$gap};
+                }
+
+                &__figure {
+                    font-weight: bold;
+                }
+            }
+
+            @content;
+        }
+    }
+}

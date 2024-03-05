@@ -1,0 +1,44 @@
+// utils
+@use "Shared/css/template/dtm/utils/scope";
+
+// components
+@use "Shared/css/template/shoppingcart/components/icons";
+@use "./../components/validation-summary-errors" as vse;
+@use "./../components/validate";
+@use "./../components/order-table";
+@use "./../components/offer-details";
+@use "./../components/modal-dialog";
+
+// layouts
+@use "./../layouts/order";
+@use "./../layouts/form";
+@use "./../layouts/express-checkout";
+
+@mixin landing {
+    // utils
+    @include scope.for-template {
+        @include order-table.base;
+    }
+
+    // components
+    @include icons.new;
+    @include icons.combobox;
+    @include validate.base;
+    @include vse.base;
+    @include offer-details.base;
+    @include modal-dialog.base;
+
+    // layouts
+    @include order.base;
+    @include order.responsive;
+
+    @include scope.for-mobile {
+        @include order.responsive;
+    }
+
+    @include form.base;
+
+    @include scope.for-template {
+        @include express-checkout.base;
+    }
+}

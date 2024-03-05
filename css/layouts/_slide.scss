@@ -1,0 +1,46 @@
+@use "sass:math";
+
+$select: ".slide" !default;
+// layouts
+@use "../../Shared/css/template/base/layouts/slide" with ($select: $select);
+
+@mixin base {
+    @include slide.new;
+
+    #{$select} {
+        position: relative;
+
+        &__nav {
+            height: 5em;
+
+            button {
+                color: currentColor;
+                border-color: transparent;
+                box-shadow: none;
+                font-size: 3em;
+                transform: scaleY(-1);
+
+                &:hover,
+                &:focus {
+                    background: #0e76bc;
+                }
+            }
+        }
+
+        &__prev > svg {
+            transform: rotate(0.25turn);
+        }
+
+        &__next > svg {
+            transform: rotate(0.75turn);
+        }
+
+        &__into {
+            max-width: 49em;
+            margin: auto;
+            align-items: center;
+        }
+
+        @content;
+    }
+}

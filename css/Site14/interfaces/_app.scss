@@ -1,0 +1,68 @@
+$base: 1;
+$scroll-offset: 4em;
+
+// utils
+@use "Shared/css/template/base/utils/unit-conversion" with (
+    $base: $base
+);
+@use "Shared/css/template/dtm/utils/scope";
+@use "./../utils/view" with (
+    $scroll-offset: $scroll-offset
+);
+@use "./../utils/section";
+@use "./../utils/hide";
+@use "./../utils/color";
+
+// components
+@use "Shared/css/template/base/components/link";
+@use "Shared/css/template/base/components/skip-link";
+@use "./../components/promo-header";
+
+// layouts
+@use "./../layouts/document" with (
+    $base: $base,
+    $scroll-offset: $scroll-offset
+);
+@use "./../layouts/header";
+@use "./../layouts/footer";
+@use "./../layouts/content";
+
+@mixin critical {
+    // utils
+    @include view.base;
+    @include section.base;
+    @include section.page;
+    @include hide.base;
+    @include color.base;
+
+    // components
+    @include link.base;
+    @include skip-link.new;
+    @include promo-header.base;
+
+    // layouts
+    @include document.base;
+
+    @include scope.get-root {
+        @include document.root;
+    }
+
+    @include scope.for-template {
+        @include document.body;
+    }
+
+    @include header.base;
+    .dtm {
+        @include header.overflow-logo;
+    }
+    @include footer.base;
+
+    @include content.base;
+    @include content.sub-page;
+
+    @content;
+}
+
+@mixin defer {
+    @content;
+}

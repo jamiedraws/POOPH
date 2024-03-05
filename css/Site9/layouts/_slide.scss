@@ -1,0 +1,47 @@
+$select: ".slide" !default;
+
+// layouts
+@use "Shared/css/template/shoppingcart/layouts/slide" with (
+    $select: $select
+);
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/css/template/base/abstracts/icons";
+
+@mixin base {
+    @include slide.new {
+        @media all and (min-width: slide.$desktop) {
+            $length: 50em;
+            $offset: 8em;
+
+            &__into {
+                max-width: #{$length};
+                width: calc(100% - #{$offset});
+                margin: auto;
+            }
+
+            &__nav {
+                max-width: calc(#{$length} + #{$offset});
+                width: 100%;
+                color: colors.get(accent);
+            }
+        }
+
+        &__prev > svg {
+            transform: rotate(0.25turn);
+        }
+
+        &__next > svg {
+            transform: rotate(0.25turn);
+        }
+    }
+
+    #{$select} {
+        @content;
+    }
+}

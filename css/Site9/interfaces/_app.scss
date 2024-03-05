@@ -1,0 +1,59 @@
+$base: 1;
+
+// utils
+@use "Shared/css/template/base/utils/unit-conversion" with (
+    $base: $base
+);
+@use "Shared/css/template/dtm/utils/scope";
+@use "./../utils/view";
+@use "./../utils/section";
+@use "./../utils/hide";
+@use "./../utils/color";
+
+// components
+@use "Shared/css/template/base/components/link";
+@use "Shared/css/template/base/components/skip-link";
+
+// layouts
+@use "./../layouts/document" with (
+    $base: $base
+);
+@use "./../layouts/header";
+@use "./../layouts/footer";
+@use "./../layouts/content";
+
+@mixin critical {
+    // utils
+    @include view.base;
+    @include section.base;
+    @include section.page;
+    @include hide.base;
+    @include color.base;
+
+    // components
+    @include link.base;
+    @include skip-link.new;
+
+    // layouts
+    @include document.base;
+
+    @include scope.get-root {
+        @include document.root;
+    }
+
+    @include scope.for-template {
+        @include document.body;
+    }
+
+    @include header.base;
+    @include footer.base;
+
+    @include content.base;
+    @include content.sub-page;
+
+    @content;
+}
+
+@mixin defer {
+    @content;
+}

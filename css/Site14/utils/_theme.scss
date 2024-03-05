@@ -1,0 +1,14 @@
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+
+@mixin ordermanager {
+    :root {
+        --theme-main-font-family: proxima-nova, sans-serif;
+        --theme-main-text-color: #{colors.get(accent-dark)};
+
+        --theme-button-text-color-rollover: white;
+
+        --theme-footer-background-color: #{colors.get(accent-dark)};
+    }
+}

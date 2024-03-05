@@ -1,0 +1,102 @@
+$select: ".header" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/css/template/base/abstracts/group";
+@use "Shared/css/template/base/abstracts/background";
+
+@mixin base {
+    #{$select} {
+        @include background.color-map(
+            colors.get(base-light),
+            colors.get(accent)
+        );
+
+        font-size: 1.03em;
+
+        &__in {
+            padding: 1rem;
+        }
+
+        &__group {
+            @include group.contain;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+
+        &__logo {
+            max-width: queries.em(108);
+            width: 100%;
+        }
+
+        &__title {
+            flex-basis: auto;
+
+            font: 600 fonts.em(29) / 1.35 fonts.get(primary);
+            text-align: center;
+        }
+
+        &__action {
+            flex-basis: auto;
+        }
+
+        @media all and (max-width: queries.set(900)) {
+            font-size: 2vw;
+
+            &__action {
+                display: none;
+            }
+        }
+
+        @content;
+    }
+}
+
+@mixin overflow-logo {
+    #{$select} {
+        &--overflow-logo {
+            #{$select} {
+                
+                &__in {
+                    overflow: visible;
+                }
+                
+                &__in,
+                &__in * {
+                    overflow: visible;
+                }
+            
+                @content;
+            }
+
+            .logo-text__logo {
+                min-width: 240px;
+                height: 310px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: -100px 0 0 -65px;
+                @media all and (max-width: queries.get(section-max)) {
+                    min-width: 31vw;
+                    height: 40vw;
+                    margin: -13vw 0 0 -9vw;
+                }
+            }
+            
+            .logo-text__group {
+                position: relative;
+                display: block;
+                width: 6.7em;
+                height: 6.7em;
+                overflow: visible;
+            }
+        }
+    }
+}

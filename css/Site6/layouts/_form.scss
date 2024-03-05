@@ -1,0 +1,221 @@
+$select: ".form" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/colors";
+@use "./../config/queries";
+
+// layouts
+@use "Shared/css/template/base/layouts/form";
+
+// abstracts
+@use "Shared/css/template/base/abstracts/group";
+@use "Shared/css/template/base/abstracts/copy";
+@use "Shared/css/template/base/abstracts/background";
+
+@mixin base {
+    @include form.new;
+    @include form.fieldset;
+    @include form.field-label;
+    @include form.select;
+    @include form.checkbox;
+
+    #{$select} {
+        z-index: 1;
+        line-height: 1.45;
+
+        @include background.highlighter(
+            $background-color: white,
+            $text-color: black
+        );
+
+        &__header {
+            text-align: center;
+            color: colors.get(accent);
+        }
+
+        &__title {
+            flex: 1 1 100%;
+
+            padding: 0.5em;
+            @include background.color-map(
+                $background-color: colors.get(accent),
+                $text-color: white
+            );
+
+            text-align: left;
+            line-height: 1;
+            font-size: fonts.em(18);
+            font-weight: 600;
+        }
+
+        &__group {
+            @include group.contain();
+            @include group.flexchild(1 1 13em);
+        }
+
+        &__payment-icons {
+            justify-content: flex-start;
+
+            > img {
+                max-width: 37px;
+                border: 1px solid #ccc;
+            }
+        }
+
+        &--select &__button {
+            width: 3em;
+        }
+
+        &__group-section {
+            @include group.contain;
+            @include group.flexchild(1 1 23em);
+        }
+
+        &__group,
+        &__group-section {
+            overflow: visible;
+        }
+
+        &__span-item {
+            flex: 1 1 100%;
+        }
+
+        &__message {
+            text-align: center;
+        }
+
+        &__fieldset {
+            align-items: center;
+            justify-content: space-between;
+            flex-basis: 100%;
+        }
+
+        &__field-label {
+            font-size: 16px;
+
+            @include copy.separate;
+        }
+
+        label,
+        &__field {
+            font-size: inherit;
+        }
+
+        &__field {
+            padding: 0.5em;
+            min-height: queries.em(24);
+        }
+
+        &__cvv {
+            align-items: center;
+        }
+
+        &__cvv &__field {
+            flex-basis: 8em;
+        }
+
+        &__cvv &__link {
+            font-size: 1em;
+        }
+
+        &__copy {
+            @include copy.separate(2rem);
+        }
+
+        &__checkbox-label > &__label {
+            margin-bottom: 1rem;
+        }
+
+        &__action {
+            margin-top: 2rem;
+        }
+
+        &__action-text {
+            text-align: center;
+        }
+
+        &__ssl > img {
+            margin: auto;
+        }
+
+        label[for="zc"] {
+            margin: 0;
+
+            > input {
+                padding: 0.5em;
+            }
+        }
+
+        input {
+            box-sizing: content-box;
+        }
+
+        button {
+            appearance: none;
+            border: none;
+            background: none;
+        }
+
+        a:focus,
+        button:focus,
+        [tabindex="0"]:focus {
+            outline: 2px solid currentColor;
+        }
+
+        @content;
+    }
+
+    @include inline-combobox-label;
+    @include frame;
+}
+
+@mixin inline-combobox-label {
+    #{$select} {
+        &--inline-combobox-label {
+            label {
+                flex: 0 1 auto;
+
+                &:not(:first-of-type) {
+                    order: 0;
+                    flex: 1;
+                }
+            }
+
+            #{$select} {
+                &__field-label {
+                    @include group.contain;
+                    justify-content: flex-start;
+                    align-items: center;
+                    flex-wrap: nowrap;
+                }
+
+                &--select {
+                    flex: 0 1 6em;
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin frame {
+    #{$select} {
+        &--frame {
+            outline: 1px solid;
+
+            #{$select} {
+                &__fieldset {
+                    @include group.gutter(0);
+                }
+
+                &__frame {
+                    padding: 1rem;
+                }
+            }
+
+            @content;
+        }
+    }
+}

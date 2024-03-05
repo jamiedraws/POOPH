@@ -1,0 +1,35 @@
+$select: ".reviews" !default;
+
+// abstracts
+@use "Shared/css/template/base/abstracts/copy";
+
+@mixin base {
+    #{$select} {
+        figure {
+            display: flex;
+            flex-direction: column;
+
+            @include copy.separate;
+            line-height: 1.45;
+            margin-bottom: 1em;
+        }
+
+        blockquote,
+        figcaption {
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 4rem;
+            padding-bottom: 3rem;
+        }
+
+        &__in {
+            max-width: 60em;
+            margin: auto;
+            padding: 2em;
+        }
+
+        @content;
+    }
+}

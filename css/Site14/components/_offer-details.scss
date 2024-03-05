@@ -1,0 +1,15 @@
+$select: ".offer-details" !default;
+
+// abstracts
+@use "Shared/css/template/base/abstracts/copy";
+
+@mixin base {
+    #{$select} {
+        padding: 1.5rem;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+
+        @include copy.separate;
+
+        @content;
+    }
+}

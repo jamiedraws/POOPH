@@ -1,0 +1,12 @@
+$select: ".icons" !default;
+
+// abstracts
+@use "Shared/css/template/base/abstracts/icons";
+
+@mixin base {
+    @include icons.new;
+
+    #{$select} {
+        @content;
+    }
+}

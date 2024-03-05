@@ -1,0 +1,36 @@
+$select: ".banner" !default;
+$color: black !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+
+// components
+@use "Shared/css/template/base/components/banner" with (
+    $select: $select,
+    $color: colors.get(primary)
+);
+
+// abstracts
+@use "Shared/css/template/base/abstracts/background";
+
+@mixin base {
+    @include banner.base;
+
+    #{$select} {
+        font: 900 fonts.em(20) / 1 fonts.get(primary);
+        text-transform: uppercase;
+
+        margin: 0;
+
+        &--ribbon {
+            display: flex;
+            justify-content: center;
+
+            max-width: 20em;
+            margin: auto;
+        }
+
+        @content;
+    }
+}

@@ -1,0 +1,18 @@
+// interfaces
+@use "interfaces/app";
+@use "interfaces/page";
+@use "interfaces/form";
+@use "interfaces/dtm";
+
+@include dtm.base;
+@include dtm.page;
+@include dtm.express-checkout;
+
+@include app.critical {
+    @include page.base {
+        @include page.index;
+        @include page.faq;
+
+        @include form.landing;
+    }
+}

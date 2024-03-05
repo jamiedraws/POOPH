@@ -1,0 +1,45 @@
+$select: ".section" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// utils
+@use "Shared/css/template/base/utils/section" with (
+    $container: queries.get(section-max),
+    $frame: 1rem
+);
+
+@mixin base {
+    @include section.new {
+        &__frame {
+            padding: #{section.$frame};
+        }
+
+        &__block {
+            margin: 2rem 0;
+        }
+    }
+
+    #{$select} {
+        @content;
+    }
+}
+
+@mixin page {
+    #{$select} {
+        &--page > &__in {
+            background: white;
+            box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+            padding: 0.25rem;
+        }
+
+        &--page {
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}

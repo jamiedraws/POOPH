@@ -1,0 +1,17 @@
+// utils
+@use "./../utils/theme";
+
+// components
+@use "./../components/button";
+
+// layouts
+
+@mixin ordermanager {
+    // utils
+    @include theme.ordermanager;
+
+    // components
+    @include button.base;
+
+    // layouts
+}

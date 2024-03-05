@@ -1,0 +1,26 @@
+// utils
+@use "./../utils/disclosure";
+@use "./../utils/element-controller";
+@use "./../utils/icons";
+
+// layouts
+@use "./../layouts/slide";
+@use "./../layouts/reviews";
+
+// components
+@use "./../components/banner";
+
+@mixin index {
+    // utils
+    @include disclosure.base;
+    @include element-controller.base;
+    @include icons.base;
+
+    // components
+    @include banner.base;
+    @include banner.lto;
+
+    // layouts
+    @include slide.base;
+    @include reviews.base;
+}

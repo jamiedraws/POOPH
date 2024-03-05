@@ -1,0 +1,58 @@
+$select: ".banner" !default;
+
+// components
+@use "Shared/css/template/base/components/banner" with (
+    $select: $select,
+    $color: #16c4c6
+);
+
+// utils
+@use "Shared/css/template/dtm/utils/scope";
+
+@mixin base {
+    @include banner.base;
+
+    #{$select} {
+        @content;
+    }
+}
+
+@mixin lto {
+    #{$select} {
+        &--lto {
+            font-family: proxima-nova, sans-serif;
+            font-weight: 900;
+            line-height: 1;
+
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+
+    @include scope.for-desktop {
+        #{$select} {
+            &--lto {
+                position: absolute;
+                width: 100%;
+                max-width: 15em;
+                font-size: 3rem;
+            }
+        }
+    }
+
+    @include scope.for-mobile {
+        #{$select} {
+           
+            &--lto {
+                display: block;
+                margin-top: 0;
+
+                @media all and (max-width: 320px) {
+                    font-size: 5vw;
+                }
+            }
+        }
+    }
+}
